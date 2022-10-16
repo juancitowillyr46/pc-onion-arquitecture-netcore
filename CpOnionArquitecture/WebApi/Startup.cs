@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebApi.Extensions;
 
 namespace WebApi
 {
@@ -40,6 +41,9 @@ namespace WebApi
             services.AddPersistenceInfrastructure(Configuration);
 
             services.AddControllers();
+
+            services.AddApiVersioningExtension();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
@@ -61,6 +65,8 @@ namespace WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseErrorHandlerMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
