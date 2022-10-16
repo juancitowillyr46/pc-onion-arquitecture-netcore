@@ -22,7 +22,7 @@ namespace Application.Features.Clientes.Command.CreateClienteCommand
                                     .MaximumLength(9).WithMessage("{PropertyName} no puede exceder {MaxLength}.");
             RuleFor(p => p.Email).NotEmpty().WithMessage("{PropertyName} no puede ser vacío.")
                                                 .EmailAddress().WithMessage("{PropertyName} debe ser una dirección de email valida")
-                                                .MaximumLength(9).WithMessage("{PropertyName} no puede exceder {MaxLength}.");
+                                                .MaximumLength(120).WithMessage("{PropertyName} no puede exceder {MaxLength}.");
             RuleFor(p => p.Direccion).NotEmpty().WithMessage("{PropertyName} no puede ser vacío")
                                   .MaximumLength(120).WithMessage("{PropertyName} no puede exceder {MaxLength}.");
         }
