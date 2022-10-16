@@ -28,7 +28,7 @@ namespace Application.Behaviours
 
                 if(failures.Count != 0)
                 {
-                    throw new Exceptions.ValidationException();
+                    throw new Exceptions.ValidationException(failures);
                 }
             }
             return await next();
