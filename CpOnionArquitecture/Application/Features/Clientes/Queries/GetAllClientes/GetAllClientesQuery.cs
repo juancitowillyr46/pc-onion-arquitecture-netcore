@@ -18,7 +18,6 @@ namespace Application.Features.Clientes.Queries.GetAllClientes
     {
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
-
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         

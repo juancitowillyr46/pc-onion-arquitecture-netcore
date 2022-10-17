@@ -14,7 +14,7 @@ namespace Application.Parameters
         public RequestParemeter()
         {
             this.PageNumber = 1;
-            this.PageSize = 1;
+            this.PageSize = 10;
         }
 
         public RequestParemeter(int pageNumber, int pageSize)
