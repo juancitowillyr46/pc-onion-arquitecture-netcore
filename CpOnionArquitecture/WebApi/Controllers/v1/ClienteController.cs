@@ -1,6 +1,7 @@
 ﻿using Application.Features.Clientes.Command.CreateClienteCommand;
 using Application.Features.Clientes.Command.DeleteClienteCommand;
 using Application.Features.Clientes.Command.UpdateClienteCommand;
+using Application.Features.Clientes.Queries.GetClienteById;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -29,6 +30,12 @@ namespace WebApi.Controllers.v1
         public async Task<IActionResult> Delete(int id)
         {
             return Ok(await Mediator.Send(new DeleteClienteCommand{ Id = id}));
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBy(int id)
+        {
+            return Ok(await Mediator.Send(new GetClienteByIdQuery { Id = id }));
         }
     }
 }
