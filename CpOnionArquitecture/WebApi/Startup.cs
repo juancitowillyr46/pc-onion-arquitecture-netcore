@@ -1,4 +1,5 @@
 using Application;
+using Identify;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,6 +34,9 @@ namespace WebApi
             
             // Definiendo extensiones desde Core/Application
             services.AddAplicationLayer();
+
+            // Definiendo extensión desde Infrastructure/Identity
+            services.AddIdentityInfrastructure(Configuration);
 
             // Definiendo extensiones desde Shared/Infrastructure
             services.AddSharedInfrastructure(Configuration);
