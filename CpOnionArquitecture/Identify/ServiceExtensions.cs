@@ -1,7 +1,9 @@
-﻿using Application.Wrappers;
+﻿using Application.Interfaces;
+using Application.Wrappers;
 using Domain.Settings;
 using Identify.Contexts;
 using Identify.Models;
+using Identify.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -28,7 +30,9 @@ namespace Identify
                 b => b.MigrationsAssembly(typeof(IdentityContext).Assembly.FullName)));
             
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<IdentityContext>().AddDefaultTokenProviders();
-
+            #region Services
+            services.AddTransient<IAccountService, AccountService>(); 
+            #endregion
             services.Configure<JWTSettings>(configuration.GetSection("JWTSettings"));
             services.AddAuthentication(options =>
                 {
@@ -47,9 +51,9 @@ namespace Identify
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ClockSkew = TimeSpan.Zero,
-                    ValidIssuer = configuration["JWtSetting:Issuer"],
-                    ValidAudience = configuration["JWtSetting:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWtSetting:Key"]))
+                    ValidIssuer = configuration["JWTSettings:Issuer"],
+                    ValidAudience = configuration["JWTSettings:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWTSettings:Key"]))
                 };
                 o.Events = new JwtBearerEvents()
                 {

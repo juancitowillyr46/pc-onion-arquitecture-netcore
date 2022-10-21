@@ -28,7 +28,7 @@ namespace Identify.Seeds
                 var user = await userManager.FindByEmailAsync(defaultUser.Email);
                 if(user == null)
                 {
-                    await userManager.CreateAsync(defaultUser, "12345678");
+                    await userManager.CreateAsync(defaultUser, "123Pa$word");
                     await userManager.AddToRoleAsync(defaultUser, Roles.Basic.ToString());
                 }
             }

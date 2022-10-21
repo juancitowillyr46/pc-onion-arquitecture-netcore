@@ -14,7 +14,7 @@ namespace WebApi
 {
     public class Program
     {
-        public static async void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
             using (var scope = host.Services.CreateScope())
@@ -30,11 +30,13 @@ namespace WebApi
                     await DefaultBasicUser.SeedAsync(userManager, roleManager);
 
 
-                } catch( Exception ex)
+                } catch(Exception ex)
                 {
                     throw;
                 }
             }
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
